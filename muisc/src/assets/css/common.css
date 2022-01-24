@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ol,ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+h1,h2,h3,h4,h5,h6,b,strong{
+    font-size: 100%;
+    font-weight: normal;
+}
+i,em{
+    font-style: normal;
+}
+body,html{
+    font: 16px "微软雅黑",Arial;
+    /*color: #333;*/
+    background-color: #eae5e5;
+}
+.active{
+    color:red;
+}
