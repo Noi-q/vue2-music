@@ -5,18 +5,21 @@
     <header>
       <i class="fa fa-angle-left h-a" aria-hidden="true" @click="GetHome"></i>
       <div class="author">
-        <p>{{MusicURL[0].name}}</p>
-        <p>{{MusicURL[0].author}}</p>
+        <p>{{MusicURL.name}}</p>
+        <p>{{MusicURL.author}}</p>
       </div>
       <i class="fa fa-search h-b" aria-hidden="true" @click="GetSearch"></i>
       <div class="MusicImg">
-        <img :src="MusicURL[0].pic" alt="">
+        <img :src="MusicURL.pic" alt="">
       </div>
       <i class="fa fa-star-o h-c" aria-hidden="true" @click="GetCollection"></i>
-      <i class="fa fa-download h-d" aria-hidden="true" @click="GetDownload"></i>
+      <a
+          class="fa fa-download h-d"
+          aria-hidden="true"
+          @click="GetDownload"
+      ></a>
       <div class="MP3">
-        <audio controls preload="true" loop>
-          <source :src="MusicURL[0].music" type="audio/mpeg">
+        <audio controls preload="true" loop :src="MusicURL.music">
         </audio>
       </div>
     </header>
@@ -29,7 +32,7 @@
     name: "Player",
     data(){
       return{
-        MusicURL:''
+        MusicURL:{}
       }
     },
     methods: {
@@ -47,34 +50,33 @@
       GetCollection(){},
       // 下载
       async GetDownload(){
-        const result = await PlayerMusic({
+        await PlayerMusic({
           input:this.$route.params.songid,
           filter:'id',
           type:'163'
         }).then(
             res =>{
-              if(res.code === 200){
-                let a = document.createElement('a')
-                let url = res.data[0].music
-                let filename = res.data[0].name
-                a.href = url
-                a.download = filename
-                a.click()
-              }
+              console.log(res.data[0].name)
+              const filename = `${res.data[0].name}.mp3`
+              const blob = new Blob([res.data[0].music])
+              const blobUrl = window.URL.createObjectURL(blob)
+              const a = document.createElement("a")
+              a.href = blobUrl
+              a.download = filename
+              a.click()
+              window.URL.revokeObjectURL(blobUrl)
             }
         )
-        console.log(result)
-
       }
     },
-    async created() {
+    async mounted() {
       const result = await PlayerMusic({
         input:this.$route.params.songid,
         filter:'id',
         type:'163'
       })
-      this.MusicURL = result.data
-      console.log(result)
+      this.MusicURL = result.data[0]
+      // console.log(this.MusicURL)
       // this.MusicURL = a.data[0].music
       // console.log(a)
     }

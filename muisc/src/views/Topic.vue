@@ -24,7 +24,7 @@
     async created() {
       let result = await HotMusicList()
       this.HotMusicList = result.data
-      console.log(result)
+      // console.log(result)
     }
 
   }

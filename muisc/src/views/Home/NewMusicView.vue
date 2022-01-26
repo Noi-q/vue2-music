@@ -37,8 +37,8 @@
       }
     },
     async created() {
-      const a = await NewMusic()
-      this.newMusicList = a.data
+      const result = await NewMusic()
+      this.newMusicList = result.data
       // console.log(a.data)
     }
   }

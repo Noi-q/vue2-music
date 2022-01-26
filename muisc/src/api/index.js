@@ -42,6 +42,15 @@ const HotMusicList = ()=>{
   })
 }
 
+// 搜索
+const SearchMusic = (params)=>{
+  return request({
+    url:'/api/',
+    method: 'get',
+    params: params
+  })
+}
+
 // 播放器
 const PlayerMusic = (params)=>{
   return request({
@@ -51,9 +60,11 @@ const PlayerMusic = (params)=>{
   })
 }
 
+
 export {
   NewMusic,
   HotMusic,
   PlayerMusic,
-  HotMusicList
+  HotMusicList,
+  SearchMusic,
 }

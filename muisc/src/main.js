@@ -18,6 +18,10 @@ import router from './router'
 
 import store from './store'
 
+// element-ui
+import {Radio} from 'element-ui'
+Vue.component(Radio.name,Radio)
+
 
 new Vue({
   render: h => h(App),

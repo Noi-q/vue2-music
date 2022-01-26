@@ -27,7 +27,7 @@ const routes = [
       {
         name:'Mine',
         path:'/mine',
-        component:()=> import('../views/Mine.vue')
+        component:()=> import('../views/Mine.vue'),
       },
       {
         name:'Search',
@@ -38,7 +38,7 @@ const routes = [
         name:'Player',
         path:'/player/:songid',
         component:Player
-      }
+      },
     ]
   }
 ]

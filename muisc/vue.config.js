@@ -7,11 +7,6 @@ module.exports = {
         changeOrigin:true,
         pathRewrite: {'^/api': ''}
       },
-      '/apia':{
-        target:'http://api.guaqb.cn/music/music/',
-        changeOrigin:true,
-        pathRewrite: {'^/apia': ''}
-      }
     },
   }
 }
