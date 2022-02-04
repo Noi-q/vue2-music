@@ -2,18 +2,14 @@
   <div class="Home">
     <NewMusicView></NewMusicView>
     <HotMusicView></HotMusicView>
-<!--    <RotationView></RotationView>-->
+    <RotationView></RotationView>
   </div>
 </template>
 
 <script>
   import NewMusicView from './NewMusicView'
   import HotMusicView from './HotMusicView'
-  // import RotationView from './RotationView'
-
-  // axios
-  // import {NewMusic} from '../../api'
-  // import Axios from 'axios'
+  import RotationView from "./RotationView";
   export default {
     data(){
       return {
@@ -23,7 +19,7 @@
     components:{
       NewMusicView,
       HotMusicView,
-      //RotationView
+      RotationView
     },
 
   }

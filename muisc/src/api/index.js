@@ -29,6 +29,32 @@ const HotMusic = ()=>{
   })
 }
 
+// 飙升榜
+const SoarMusic = ()=>{
+  return request({
+    url:'/api/',
+    method: 'get',
+    params:{
+      input:'飙升榜歌曲',
+      filter: 'name',
+      type:'163'
+    }
+  })
+}
+
+// 原创榜
+const OriginalMusic = ()=>{
+  return request({
+    url:'/api/',
+    method: 'get',
+    params:{
+      input: '原创榜歌曲',
+      filter: 'name',
+      type:'163'
+    }
+  })
+}
+
 // 榜单
 const HotMusicList = ()=>{
   return request({
@@ -67,4 +93,6 @@ export {
   PlayerMusic,
   HotMusicList,
   SearchMusic,
+  SoarMusic,
+  OriginalMusic
 }

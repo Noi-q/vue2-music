@@ -22,6 +22,20 @@ import store from './store'
 import {Radio} from 'element-ui'
 Vue.component(Radio.name,Radio)
 
+// vant ui
+import {
+  Swipe,
+  SwipeItem,
+  Lazyload,
+  Tab,
+  Tabs
+} from 'vant'
+Vue.use(Swipe)
+Vue.use(SwipeItem)
+Vue.use(Lazyload)
+Vue.use(Tab)
+Vue.use(Tabs)
+
 
 new Vue({
   render: h => h(App),

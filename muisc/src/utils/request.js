@@ -27,7 +27,7 @@ request.interceptors.response.use(function (response) {
 }, function (error) {
   // 超出 2xx 范围的状态码都会触发该函数。
   // 对响应错误做点什么
-  alert('检查网络，网络没问题请发至邮箱：noi.vcal@gmail.com')
+  alert('检查网络，刷新重试，网络没问题接口应该出问题了')
   return Promise.reject(error);
 });
 

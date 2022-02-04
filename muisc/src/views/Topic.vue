@@ -1,30 +1,87 @@
 <template>
   <div class="Topic">
-    <div class="List">
-      <div class="item" v-for="(item,index) in HotMusicList" :key="index">
-          <router-link :to="`/player/${item.songid}`">
-              <img :src="item.pic" alt="">
-              <p>{{item.name}}</p>
-              <p>{{item.author}}</p>
-          </router-link>
+    <div class="Music">
+      <div class="header">
+        <img src="https://avatars.githubusercontent.com/u/76736117?v=4" alt="">
+        <span>新歌榜</span>
+      </div>
+      <div
+          v-for="(item,index) in NewMusicList.slice(0,3)"
+          :key="index"
+          class="item"
+      >
+        <i>{{index+1}}.</i>
+        <span>{{item.name}}</span>
+      </div>
+    </div>
+    <div class="Music">
+      <div class="header">
+        <img src="https://avatars.githubusercontent.com/u/76736117?v=4" alt="">
+        <span>热歌榜</span>
+      </div>
+      <div
+          v-for="(item,index) in HotMusicList.slice(0,3)"
+          :key="index"
+          class="item"
+      >
+        <i>{{index+1}}.</i>
+        <span>{{item.name}}</span>
+      </div>
+    </div>
+    <div class="Music">
+      <div class="header">
+        <img src="https://avatars.githubusercontent.com/u/76736117?v=4" alt="">
+        <span>飙升榜</span>
+      </div>
+      <div
+          v-for="(item,index) in SoarMusicList.slice(0,3)"
+          :key="index"
+          class="item"
+      >
+        <i>{{index+1}}.</i>
+        <span>{{item.name}}</span>
+      </div>
+    </div>
+    <div class="Music">
+      <div class="header">
+        <img src="https://avatars.githubusercontent.com/u/76736117?v=4" alt="">
+        <span>原创榜</span>
+      </div>
+      <div
+          v-for="(item,index) in OriginalMusicList.slice(0,3)"
+          :key="index"
+          class="item"
+      >
+        <i>{{index+1}}.</i>
+        <span>{{item.name}}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import {HotMusicList} from "../api";
+  import {NewMusic,HotMusic,SoarMusic,OriginalMusic} from "../api";
   export default {
     name: "Topic",
     data(){
       return {
-        HotMusicList:[]
+        NewMusicList:[],
+        HotMusicList:[],
+        SoarMusicList:[],
+        OriginalMusicList:[]
       }
     },
     async created() {
-      let result = await HotMusicList()
-      this.HotMusicList = result.data
-      // console.log(result)
+      if(this.NewMusicList || this.HotMusicList || this.SoarMusicList || this.OriginalMusicList === ''){
+      }
+      let result = await NewMusic()
+      this.NewMusicList = result.data
+      let result2 = await HotMusic()
+      this.HotMusicList = result2.data
+      let result3 = await SoarMusic()
+      this.SoarMusicList = result3.data
+      let result4 = await OriginalMusic()
+      this.OriginalMusicList = result4.data
     }
 
   }
@@ -34,40 +91,35 @@
 .Topic{
   margin-top: 5px;
   background-color:#f8f8f8;
-
-  .List{
-    .item{
-      //background-color:skyblue;
-      padding:5px;
-      //text-align: center;
-
-      a{
-        margin-top:5px;
-        display: block;
-        background-color: #f1f0f0;
-        cursor: pointer;
-        color: black;
-        overflow:hidden;
-        padding:5px;
-        img{
-          float:left;
-          margin-left:10px;
-          width:50px;
-          border-radius:50%;
-        }
-        p{
-          //display:block;
-          //margin-left:20px;
-          //background-color:red;
-          text-align: center;
-        }
-        p:nth-of-type(2){
-          color:gray;
-          font-size:14px;
-        }
+  .Music{
+    margin: 0 auto;
+    margin-bottom:10px;
+    //margin-top: 5px;
+    width: 80%;
+    //background-color:red;
+    box-shadow: 0 0 5px gray;
+    border-radius: 10px;
+    min-height:150px;
+    .header{
+      overflow: hidden;
+      img{
+        margin-left:10px;
+        margin-top: 10px;
+        float: left;
+        width:50px;
+        border-radius:50%;
       }
-      a:hover {
-        background-color:#b3a9a9;
+      span{
+        margin-right:10px;
+        margin-top: 25px;
+        float: right;
+        color: #e47670;
+      }
+    }
+    .item{
+      text-align: center;
+      i{
+        color: red;
       }
     }
   }
